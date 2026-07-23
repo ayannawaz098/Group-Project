@@ -1,6 +1,9 @@
 #b1{
     background-color: antiquewhite;
     text-align: center;
+    padding: 5%;
+    
+
     
     font-size: xx-large;
     font-family: 'Courier New', Courier, monospace;
@@ -9,4 +12,8 @@
 .cardcont{
     display: flex;
     gap: 160px;
+}
+#bg{
+    background-image: url(b3g.jpg);
+    background-repeat: no-repeat;
 }
