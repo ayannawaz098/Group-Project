@@ -1,0 +1,22 @@
+#h1{
+    text-align: center;
+    background-color: lightblue;
+    padding: 7%;
+    font-size: 350%;
+    background-image:url(p2p.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    color: yellow;
+}
+
+h2{
+    text-align: left ;
+    color:red;
+}
+#b1{
+    background-color: green;
+}
+#themeToggleBtn{
+    border: 2px dashed #f44336;
+}
