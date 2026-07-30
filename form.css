@@ -8,6 +8,7 @@
     background-size: 100%;
     background-position: center;
     color: yellow;
+    background-image: url(image5.png);
 }
 
 h2{
@@ -19,4 +20,7 @@ h2{
 }
 #themeToggleBtn{
     border: 2px dashed #f44336;
+}
+#main{
+  background-image: url(image2.png);
 }
