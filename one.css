@@ -17,4 +17,16 @@
     background-position:center;
     background-repeat:no-repeat;
 }
+* Navbar */
+.navbar{
+    width:100%;
+    padding:18px 60px;
+    background:rgba(89, 67, 67, 0.35);
+}
+
+.navdiv{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
