@@ -90,6 +90,36 @@
   });
 </script>
 </div>
-    
+    <script >
+const registrationForm = document.querySelector('form');
+
+registrationForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const inputs = registrationForm.querySelectorAll('input');
+    const fullName = inputs[0].value.trim();
+    const email = inputs[1].value.trim();
+
+    if (fullName === "") {
+        alert("Please enter your Full Name.");
+        return;
+    }
+
+    if (email === "") {
+        alert("Please enter your Email Address.");
+        return;
+    }
+    const emailPattern = /\w+@\w+/;
+    if (emailPattern.test(email) === false) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+
+    alert("Thank you, " + fullName + "! Your form has been submitted successfully.");
+
+
+
+});</script>
+
 </body>
 </html>
