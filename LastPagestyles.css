@@ -1,5 +1,5 @@
 body{
-    background-image:url(image6.png) ;
+    background-image:url(image4.png) ;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -27,6 +27,10 @@ body{
     background-repeat: no-repeat;
 }
 .card-body{
-    background-color: lightblue;
-    color: yellow;
+    background-color: black;
+    color: goldenrod;
+    text-decoration-color: yellow;
+}
+.card-text{
+    color: gold;
 }
