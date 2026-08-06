@@ -2,7 +2,7 @@ body{
     margin:0;
     font-family:Arial, sans-serif;
 
-    background-image: url("Gemini_Generated_Image_d4g1kqd4g1kqd4g1.png");
+    background-image: url("bb.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,13 +10,7 @@ body{
 
     text-align:center;
 }
-body{
-    background-image: url("Gemini_Generated_Image_d4g1kqd4g1kqd4g1.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+
 h1{
     color:white;
     font-size:50px;

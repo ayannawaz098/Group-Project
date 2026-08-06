@@ -1,57 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>button pt1</title>
-  <style>
-    .button {
-      color: white;
-      padding: 250px 150px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 100px 100px 100px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .button:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
+<title>Shop</title>
 
-    .button1 {
-      background-image: url(https://images.pexels.com/photos/12210270/pexels-photo-12210270.jpeg);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-    }
+<link rel="stylesheet" href="style.css">
+<style>
 
-    .button2 {
-      background-image: url(https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-    }
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+    text-align:center;
+}
 
-    .button3 {
-      background-image: url(https://images.pexels.com/photos/6660060/pexels-photo-6660060.jpeg);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-    }
-  </style>
+h1{
+    margin-top:30px;
+}
+
+p{
+    color:#555;
+    margin-bottom:40px;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.button{
+    width:300px;
+    height:420px;
+    border:none;
+    border-radius:20px;
+    color:white;
+    font-size:30px;
+    font-weight:bold;
+    cursor:pointer;
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-shadow:2px 2px 5px black;
+
+    transition:0.3s;
+}
+
+.button:hover{
+    transform:translateY(-10px);
+    box-shadow:0 12px 25px rgba(0,0,0,.3);
+}
+
+.button1{
+    background-image:url("https://images.pexels.com/photos/12210270/pexels-photo-12210270.jpeg");
+}
+
+.button2{
+    background-image:url("https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg");
+}
+
+.button3{
+    background-image:url("https://images.pexels.com/photos/14440412/pexels-photo-14440412.jpeg");
+}
+
+
+</style>
 </head>
 
 <body>
 
-  <h1>The button element</h1>
-  <p>prototype</p>
+<h1>Shop From London</h1>
+<p>London to Your Home</p>
 
-  <button class="button button1">one </button>
-  <button class="button button2">two </button>
-  <button class="button button3">three</button>
+<div class="container">
+
+<button class="button button1">Shoes</button>
+
+<button class="button button2">Products</button>
+
+<button class="button button3">Clothing</button>
+
+
+</div>
+
 
 </body>
-
 </html>
