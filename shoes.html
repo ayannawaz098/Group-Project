@@ -18,8 +18,19 @@
     <p class="card-text">Comfortable running shoes with Air cushioning</p>
     <button type="button" class="btn btn-primary buy-btn"
       data-img="h2.jpg" data-name="Nike Air Max"
-      data-desc="Comfortable running shoes with Air cushioning for everyday wear and long runs."
+      data-desc="A visible Air-Sole unit sits in the heel to soften every landing, while the mesh-and-leather upper keeps the fit breathable enough for daily wear. Built for runners who also want a shoe that looks right off the track, pairing an easy step-in feel with a durable rubber outsole that grips wet or dry pavement."
       data-price="70">Buy</button>
+  </div>
+</div>
+<div class="card" style="width: 18rem; flex-shrink: 0;">
+  <img src="h3.jpg" class="card-img-top" alt="New Balance 990" style="max-height: 250px; object-fit: cover;">
+  <div class="card-body">
+    <h5 class="card-title">New Balance 990 £150</h5>
+    <p class="card-text">Made-in-USA heritage runner with pigskin suede.</p>
+    <button type="button" class="btn btn-primary buy-btn"
+      data-img="h3.jpg" data-name="New Balance 990"
+      data-desc="A heritage runner built in the USA with premium pigskin suede and mesh, tuned with ENCAP midsole technology for a plush yet stable ride. The grey-toned upper keeps it wearable with almost anything, and the roll bar in the heel adds extra support for people on their feet all day."
+      data-price="150">Buy</button>
   </div>
 </div>
 <div class="card" style="width: 18rem; flex-shrink: 0">
@@ -51,7 +62,7 @@
     <p class="card-text">Timeless leather sneaker, soft and versatile.</p>
     <button type="button" class="btn btn-primary buy-btn"
       data-img="w3.jpg" data-name="Reebok Classic Leather"
-      data-desc="Timeless soft leather upper with a die-cut EVA midsole for everyday comfort."
+      data-desc="A design that has barely changed since the 1980s, built around a soft leather upper that molds to the foot over time. The die-cut EVA midsole keeps it lightweight underfoot, and the low-profile silhouette makes it easy to dress up or down, whether it's paired with jeans or worn straight out of the gym bag."
       data-price="95">Buy</button>
   </div>
 </div>
@@ -87,7 +98,7 @@
     <p class="card-text">Skate-classic with the signature side stripe.</p>
     <button type="button" class="btn btn-primary buy-btn"
       data-img="w6.jpg" data-name="Vans Old Skool"
-      data-desc="Skate-classic low-top with the signature side stripe and durable suede/canvas build."
+      data-desc="The shoe that put Vans on the map, mixing durable suede and canvas panels with the signature side stripe. A padded collar and reinforced toe cap were originally added for skaters, but the low-profile silhouette has made it a go-to casual sneaker that pairs with nearly any outfit."
       data-price="70">Buy</button>
   </div>
 </div>
@@ -167,6 +178,19 @@
   </div>
 </div>
 
+<!-- Confirmation Toast -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080;">
+  <div id="purchaseToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        <strong id="toastTitle">✔ Order confirmed</strong>
+        <div id="toastBody" style="font-size: 0.9rem;"></div>
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   let quantity = 1;
@@ -208,9 +232,29 @@
     document.getElementById('modalTotal').textContent = (unitPrice * quantity).toFixed(2);
   }
 
-  document.getElementById('confirmPurchase').addEventListener('click', () => {
-    alert(`Order confirmed: ${quantity} x ${currentProduct} - Total £${(unitPrice * quantity).toFixed(2)}`);
-    buyModal.hide();
+  const purchaseToastEl = document.getElementById('purchaseToast');
+  const purchaseToast = new bootstrap.Toast(purchaseToastEl, { delay: 3500 });
+  const confirmBtn = document.getElementById('confirmPurchase');
+
+  confirmBtn.addEventListener('click', () => {
+    const orderedQty = quantity;
+    const orderedProduct = currentProduct;
+    const orderedTotal = (unitPrice * quantity).toFixed(2);
+
+    // brief "processing" state so the click feels responsive, not instant
+    confirmBtn.disabled = true;
+    const originalLabel = confirmBtn.textContent;
+    confirmBtn.textContent = 'Processing...';
+
+    setTimeout(() => {
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = originalLabel;
+      buyModal.hide();
+
+      document.getElementById('toastBody').textContent =
+        `${orderedQty} x ${orderedProduct} — Total £${orderedTotal}`;
+      purchaseToast.show();
+    }, 600);
   });
 </script>
 
