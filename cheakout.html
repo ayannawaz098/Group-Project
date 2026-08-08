@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout</title>
+
+<style>
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:40px;
+}
+
+.container{
+    width:400px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    font-size:18px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:darkgreen;
+}
+
+.result{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Checkout</h2>
+
+<label>Total Amount (£)</label>
+<input type="number" id="gbp" placeholder="Enter Total in Pounds">
+
+<p><strong>Delivery Country:</strong>
+<span id="countryName"></span>
+</p>
+
+<button onclick="convertCurrency()">Calculate</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+// Country selected from the map
+let country = localStorage.getItem("country");
+
+// Show country name
+document.getElementById("countryName").innerHTML = country;
+
+// Fixed exchange rates
+const rates = {
+
+    "India": {
+        rate:129,
+        currency:"INR"
+    },
+
+    "Nepal": {
+        rate:200,
+        currency:"NPR"
+    },
+
+    "Pakistan": {
+        rate:390,
+        currency:"PKR"
+    },
+
+    "Bangladesh": {
+        rate:165,
+        currency:"BDT"
+    },
+
+    "Sri Lanka": {
+        rate:430,
+        currency:"LKR"
+    }
+
+};
+
+// Calculator
+function convertCurrency(){
+
+    let pounds = Number(document.getElementById("gbp").value);
+
+    if(!rates[country]){
+        document.getElementById("result").innerHTML =
+        "Please select a country from the map.";
+        return;
+    }
+
+    let converted = pounds * rates[country].rate;
+
+    document.getElementById("result").innerHTML =
+        "£" + pounds +
+        " = " +
+        converted.toLocaleString() +
+        " " +
+        rates[country].currency;
+        
+        let country = localStorage.getItem("country");
+
+document.getElementById("countryName").innerHTML = country;
+const rates = {
+    "India": { rate: 129, currency: "INR" },
+    "Nepal": { rate: 200, currency: "NPR" },
+    "Pakistan": { rate: 390, currency: "PKR" },
+    "Bangladesh": { rate: 165, currency: "BDT" },
+    "Sri Lanka": { rate: 430, currency: "LKR" }
+};
+}
+
+</script>
+
+
+</body>
+</html>
