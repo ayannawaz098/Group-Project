@@ -1,5 +1,5 @@
 body{
-    background-image:url(image6.png) ;
+    background-image:url(Images/image6.png) ;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -23,7 +23,7 @@ body{
     gap: 50px;
 }
 #bg{
-    background-image: url(b3g.jpg);
+    background-image: url(Images/b3g.jpg);
     background-repeat: no-repeat;
 }
 .card-body{
