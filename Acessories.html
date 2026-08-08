@@ -22,19 +22,25 @@
   </div>
 </div>
 <div class="card" style="width: 18rem; flex-shrink: 0">
-  <img src="k3.jpg" class="card-img-top" alt="shirt" style="max-height: 250px; object-fit: cover;">
+  <img src="k3.jpg" class="card-img-top" alt="Dior Sauvage EDT" style="max-height: 250px; object-fit: cover;">
   <div class="card-body">
-    <h5 class="card-title">80£</h5>
+    <h5 class="card-title">£80</h5>
     <p class="card-text">Dior-sauvage EDT</p>
-    <a href="#" class="btn btn-primary">Buy</a>
+    <button type="button" class="btn btn-primary buy-btn"
+      data-img="k3.jpg" data-name="Dior - Sauvage EDT"
+      data-desc="A fresh, peppery opening of Calabrian bergamot settles into a warm ambroxan base, making this one of the most recognisable scents on the market. Versatile enough for daytime office wear yet bold enough to carry into the evening, with strong projection and a longevity of six to eight hours per spray."
+      data-price="80">Buy</button>
   </div>
 </div>
 <div class="card" style="width: 18rem;flex-shrink: 0">
-  <img src="k4.jpg" class="card-img-top" alt="black shirt" style="max-height: 250px; object-fit: cover;">
+  <img src="k4.jpg" class="card-img-top" alt="Chanel Bleu de Chanel EDP" style="max-height: 250px; object-fit: cover;">
   <div class="card-body">
-    <h5 class="card-title">100£</h5>
-    <p class="card-text"> Chanel-Bleu de chanel EDP</p>
-    <a href="#" class="btn btn-primary">Buy</a>
+    <h5 class="card-title">£100</h5>
+    <p class="card-text">Chanel-Bleu de chanel EDP</p>
+    <button type="button" class="btn btn-primary buy-btn"
+      data-img="k4.jpg" data-name="Chanel - Bleu de Chanel EDP"
+      data-desc="A woody-aromatic fragrance that opens with citrus and mint before settling into cedar, sandalwood, and a touch of incense. The EDP concentration gives it noticeably more depth and staying power than the EDT version, making it a solid pick for evening wear or colder months."
+      data-price="100">Buy</button>
   </div>
 </div>
 <div class="card" style="width: 18rem; flex-shrink: 0;">
@@ -93,19 +99,25 @@
   </div>
 </div>
 <div class="card" style="width: 18rem;flex-shrink: 0">
-  <img src="k11.jpg" class="card-img-top" alt="black shirt" style="max-height: 250px; object-fit: cover;">
+  <img src="k11.jpg" class="card-img-top" alt="Jean Paul Gaultier Le Male Le Parfum" style="max-height: 250px; object-fit: cover;">
   <div class="card-body">
-    <h5 class="card-title">69.99£</h5>
+    <h5 class="card-title">£69.99</h5>
     <p class="card-text">Jean paul Gaultier-Le Male Le Parfum</p>
-    <a href="#" class="btn btn-primary">Buy</a>
+    <button type="button" class="btn btn-primary buy-btn"
+      data-img="k11.jpg" data-name="Jean Paul Gaultier - Le Male Le Parfum"
+      data-desc="A richer, more intense take on the classic Le Male, built around vanilla, cardamom, and lavender with an amber-woody base. The iconic torso-shaped bottle is instantly recognisable, and the scent leans sweeter and heavier than the original EDT, suited to autumn and winter wear."
+      data-price="69.99">Buy</button>
   </div>
 </div>
 <div class="card" style="width: 18rem;flex-shrink: 0">
-  <img src="k12.jpg" class="card-img-top" alt="black shirt" style="max-height: 250px; object-fit: cover;">
+  <img src="k12.jpg" class="card-img-top" alt="Tom Ford Ombre Leather EDP" style="max-height: 250px; object-fit: cover;">
   <div class="card-body">
-    <h5 class="card-title">140£</h5>
+    <h5 class="card-title">£140</h5>
     <p class="card-text">Tom Ford-Ombre Leather EDP</p>
-    <a href="#" class="btn btn-primary">Buy</a>
+    <button type="button" class="btn btn-primary buy-btn"
+      data-img="k12.jpg" data-name="Tom Ford - Ombre Leather EDP"
+      data-desc="A smoky, suede-leather scent softened with jasmine, amber, and patchouli, sitting closer to a unisex fragrance than most in the Tom Ford line. Dense and long-lasting on skin, it's often reached for as a signature scent rather than an everyday spray, given its strength and character."
+      data-price="140">Buy</button>
   </div>
 </div>
 </div>
@@ -136,6 +148,19 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-success" id="confirmPurchase">Confirm Purchase</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation Toast -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080;">
+  <div id="purchaseToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        <strong id="toastTitle">✔ Order confirmed</strong>
+        <div id="toastBody" style="font-size: 0.9rem;"></div>
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
 </div>
@@ -181,9 +206,28 @@
     document.getElementById('modalTotal').textContent = (unitPrice * quantity).toFixed(2);
   }
 
-  document.getElementById('confirmPurchase').addEventListener('click', () => {
-    alert(`Order confirmed: ${quantity} x ${currentProduct} - Total £${(unitPrice * quantity).toFixed(2)}`);
-    buyModal.hide();
+  const purchaseToastEl = document.getElementById('purchaseToast');
+  const purchaseToast = new bootstrap.Toast(purchaseToastEl, { delay: 3500 });
+  const confirmBtn = document.getElementById('confirmPurchase');
+
+  confirmBtn.addEventListener('click', () => {
+    const orderedQty = quantity;
+    const orderedProduct = currentProduct;
+    const orderedTotal = (unitPrice * quantity).toFixed(2);
+
+    confirmBtn.disabled = true;
+    const originalLabel = confirmBtn.textContent;
+    confirmBtn.textContent = 'Processing...';
+
+    setTimeout(() => {
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = originalLabel;
+      buyModal.hide();
+
+      document.getElementById('toastBody').textContent =
+        `${orderedQty} x ${orderedProduct} — Total £${orderedTotal}`;
+      purchaseToast.show();
+    }, 600);
   });
 </script>
 
