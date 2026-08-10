@@ -1,153 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-    font-family:Arial, sans-serif;
-    background:#f4f4f4;
-    margin:0;
-    padding:40px;
-}
+    <title>Checkout</title>
 
-.container{
-    width:400px;
-    margin:auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
 
-h2{
-    text-align:center;
-}
+        .checkout {
+            width: 400px;
+            margin: 60px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
 
-input{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-    font-size:16px;
-}
+        h1 {
+            margin-bottom: 25px;
+        }
 
-button{
-    width:100%;
-    padding:10px;
-    font-size:18px;
-    background:green;
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-}
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 18px;
+        }
 
-button:hover{
-    background:darkgreen;
-}
+        .total {
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-.result{
-    margin-top:20px;
-    font-size:20px;
-    font-weight:bold;
-}
-</style>
+        #country {
+            font-weight: bold;
+        }
 
+        button {
+            margin-top: 25px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            background: #022417;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="checkout">
 
-<h2>Checkout</h2>
+        <h1>Checkout</h1>
 
-<label>Total Amount (£)</label>
-<input type="number" id="gbp" placeholder="Enter Total in Pounds">
+        <div class="row">
+            <span>Delivery Country:</span>
+            <span id="country">Loading...</span>
+        </div>
 
-<p><strong>Delivery Country:</strong>
-<span id="countryName"></span>
-</p>
+        <div class="row">
+            <span>Original Total:</span>
+            <span>£100.00</span>
+        </div>
 
-<button onclick="convertCurrency()">Calculate</button>
+        <div class="row total">
+            <span>Total:</span>
+            <span id="convertedTotal">Loading...</span>
+        </div>
 
-<div class="result" id="result"></div>
+        <button onclick="placeOrder()">
+            Place Order
+        </button>
 
-</div>
+    </div>
 
-<script>
 
-// Country selected from the map
-let country = localStorage.getItem("country");
+    <script>
 
-// Show country name
-document.getElementById("countryName").innerHTML = country;
+        let countryInfo = JSON.parse(localStorage.getItem("country") || "{}");
 
-// Fixed exchange rates
-const rates = {
+        let lat = parseFloat(countryInfo.latitude);
+        let lng = parseFloat(countryInfo.longitude);
 
-    "India": {
-        rate:129,
-        currency:"INR"
-    },
+        let totalGBP = 100.00;
 
-    "Nepal": {
-        rate:200,
-        currency:"NPR"
-    },
+        let countries = [
 
-    "Pakistan": {
-        rate:390,
-        currency:"PKR"
-    },
+            {
+                name: "Nepal",
 
-    "Bangladesh": {
-        rate:165,
-        currency:"BDT"
-    },
+                minLat: 26.347,
+                maxLat: 30.447,
 
-    "Sri Lanka": {
-        rate:430,
-        currency:"LKR"
-    }
+                minLng: 80.058,
+                maxLng: 88.202,
 
-};
+                currency: {
+                    code: "NPR",
+                    symbol: "रू",
+                    rate: 209
+                }
+            },
 
-// Calculator
-function convertCurrency(){
+            {
+                name: "Bangladesh",
 
-    let pounds = Number(document.getElementById("gbp").value);
+                minLat: 20.738,
+                maxLat: 26.634,
 
-    if(!rates[country]){
-        document.getElementById("result").innerHTML =
-        "Please select a country from the map.";
-        return;
-    }
+                minLng: 88.028,
+                maxLng: 92.673,
 
-    let converted = pounds * rates[country].rate;
+                currency: {
+                    code: "BDT",
+                    symbol: "৳",
+                    rate: 148
+                }
+            },
 
-    document.getElementById("result").innerHTML =
-        "£" + pounds +
-        " = " +
-        converted.toLocaleString() +
-        " " +
-        rates[country].currency;
-        
-        let country = localStorage.getItem("country");
+            {
+                name: "Pakistan",
 
-document.getElementById("countryName").innerHTML = country;
-const rates = {
-    "India": { rate: 129, currency: "INR" },
-    "Nepal": { rate: 200, currency: "NPR" },
-    "Pakistan": { rate: 390, currency: "PKR" },
-    "Bangladesh": { rate: 165, currency: "BDT" },
-    "Sri Lanka": { rate: 430, currency: "LKR" }
-};
-}
+                minLat: 23.634,
+                maxLat: 37.097,
 
-</script>
+                minLng: 60.872,
+                maxLng: 77.837,
 
+                currency: {
+                    code: "PKR",
+                    symbol: "₨",
+                    rate: 380
+                }
+            },
+
+            {
+                name: "Sri Lanka",
+
+                minLat: 5.916,
+                maxLat: 9.835,
+
+                minLng: 79.652,
+                maxLng: 81.879,
+
+                currency: {
+                    code: "LKR",
+                    symbol: "Rs",
+                    rate: 400
+                }
+            },
+
+            {
+                name: "India",
+
+                minLat: 6.554,
+                maxLat: 35.674,
+
+                minLng: 68.111,
+                maxLng: 97.395,
+
+                currency: {
+                    code: "INR",
+                    symbol: "₹",
+                    rate: 112
+                }
+            }
+
+        ];
+
+
+        function getCountryByCoordinates(lat, lng) {
+
+            return countries.find(country =>
+                lat >= country.minLat &&
+                lat <= country.maxLat &&
+                lng >= country.minLng &&
+                lng <= country.maxLng
+            );
+        }
+
+
+        function convertCurrency() {
+
+            if (isNaN(lat) || isNaN(lng)) {
+                document.getElementById("convertedTotal").innerHTML =
+                    "£ " + totalGBP.toFixed(2);
+                return;
+            }
+
+            let country = getCountryByCoordinates(lat, lng);
+
+            if (country) {
+
+                let currency = country.currency;
+
+                let convertedPrice = totalGBP * currency.rate;
+
+                document.getElementById("convertedTotal").innerHTML =
+                    currency.symbol + " " +
+                    convertedPrice.toFixed(2)
+                
+                console.log("Country:", country.name);
+
+                document.getElementById("country").innerHTML = country.name;
+
+                
+                console.log("Currency:", currency.code);
+
+            } else {
+
+                document.getElementById("convertedTotal").innerHTML =
+                    "£ " + totalGBP.toFixed(2);
+            }
+        }
+
+
+
+
+        convertCurrency();
+
+
+
+
+        function placeOrder() {
+
+            alert(
+                "Order placed successfully!\n" +
+                "Country: " + country.name
+            );
+
+        }
+
+    </script>
 
 </body>
+
 </html>
