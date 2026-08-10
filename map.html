@@ -73,10 +73,27 @@ marker.on('dragend',function(){
     "Latitude: " + pos.lat.toFixed(5) +
     "<br>Longitude: " + pos.lng.toFixed(5);
 
+    map= L.map('map').setView([pos.lat.toFixed(5),pos.lng.toFixed(5)],5);
+
 });
 </script>
+<script src="map.js"></script>
+
+
+<script>
+function confirmLocation() {
+
+    localStorage.setItem("country", JSON.stringify({
+        latitude: marker.getLatLng().lat,
+        longitude: marker.getLatLng().lng
+    }));
+
+    window.location.href = "cheakout.html";
+}
+</script>
+
 <button onclick="confirmLocation()">
-    Confirm Delivery Location
+    Go to Checkout
 </button>
 
 </body>
