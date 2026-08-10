@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sign In Page</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+
+<body><div class="main">
+
+    <div class="signin-box">
+
+        <h1>Sign In</h1>
+
+        <form id="loginForm">
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter Email"
+                required
+            >
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter Password"
+                required
+            >
+
+            <button type="submit">Sign In</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+
+    console.log("Email saved:", email);
+    console.log("Password saved");
+
+    alert("Saved to Local Storage!");
+
+});
+
+</script>
