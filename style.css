@@ -1,0 +1,39 @@
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+
+    background-image: url("Images/bb.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    text-align:center;
+}
+
+h1{
+    color:white;
+    font-size:50px;
+    text-shadow:2px 2px 8px black;
+}
+
+p{
+    color:white;
+    font-size:22px;
+    text-shadow:2px 2px 8px black;
+}
+.button{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+}
+
+.button:hover{
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+}
