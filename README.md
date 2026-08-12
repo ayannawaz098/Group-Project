@@ -5,6 +5,10 @@ The London to Nepal (L2N) e-commerce platform connects UK-based consumers with a
 ** How it works:**  
 A resident of Nepal may want to buy a pair of Airmax 95 ultras, which stand out to him. He wants to buy and use this product, but there is no JD Sports (the brand selling these shoes) branch in Nepal, and they don't deliver internationally. This highlights the need for a reliable platform to help him access that brand remotely. London to Nepal will allow him to select his item without worrying about extra costs.  
 
+**. Declarations, Attributions & Technical Acknowledgements ** 
+This project uses third-party frameworks, media assets, and AI-assisted debugging tools. The user interface utilizes the Bootstrap framework to create responsive product cards and the client-side light/dark mode toggle. All product and background images on the site were sourced from Google Images, along with custom visual assets generated through Gemini. Additionally, I used AI assistance from Gemini solely for debugging and problem-solving. This included fixing nested directory issues, broken anchor tags, and refining JavaScript Regular Expressions—not for automatic code generation.  
+
+
 <img width="803" height="508" alt="image" src="https://github.com/user-attachments/assets/645205fe-672f-475a-9a78-83a84399e550" />
 
 <img width="940" height="936" alt="image" src="https://github.com/user-attachments/assets/3c919a74-6c40-484c-9970-c8d5973e19ca" />
